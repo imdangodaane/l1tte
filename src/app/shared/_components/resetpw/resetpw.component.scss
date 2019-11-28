@@ -1,0 +1,21 @@
+.resetPW__component {
+
+  .resetPW__header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  
+    img {
+      width: 1.5rem;
+      height: auto;
+      cursor: pointer;
+    }
+  }
+  .resetPW__body {
+
+  }
+  .resetPW__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

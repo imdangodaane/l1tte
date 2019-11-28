@@ -1,0 +1,75 @@
+<nb-card class="info-component">
+  <nb-card-header>
+    <span>Thông tin server</span>
+  </nb-card-header>
+  <nb-card-body>
+      <nb-accordion multi [nbSpinner]="loaderService.loading" nbSpinnerStatus="primary">
+          <nb-accordion-item [expanded]="true">
+            <nb-accordion-item-header>Thông tin cơ bản</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="server-info__basic-information">
+                <table class="basic-information__table">
+                  <tr>
+                    <td>Phiên bản (episode)</td>
+                    <td>13.2</td>
+                  </tr>
+                  <tr>
+                    <td>Max level</td>
+                    <td>99</td>
+                  </tr>
+                  <tr>
+                    <td>Max stats</td>
+                    <td>99</td>
+                  </tr>
+                  <tr>
+                    <td>Max ASPD</td>
+                    <td>190</td>
+                  </tr>
+                  <tr>
+                    <td>Openbeta</td>
+                    <td>20/11/2019</td>
+                  </tr>
+                  <tr>
+                    <td>Party share</td>
+                    <td>30</td>
+                  </tr>
+                </table>
+              </div>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+          <nb-accordion-item>
+            <nb-accordion-item-header>Tỉ lệ kinh nghiệm và vật phẩm</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="server-info__rates">
+                <table>
+                  <tr>
+                    <td>Base EXP</td>
+                    <td>x70</td>
+                  </tr>
+                  <tr>
+                    <td>Job EXP</td>
+                    <td>x70</td>
+                  </tr>
+                  <tr>
+                    <td>Item Drop</td>
+                    <td>x25</td>
+                  </tr>
+                  <tr>
+                    <td>Card Drop</td>
+                    <td>x25</td>
+                  </tr>
+                  <tr>
+                    <td>Miniboss Card Drop</td>
+                    <td>x1</td>
+                  </tr>
+                  <tr>
+                    <td>MVP Card Drop</td>
+                    <td>x1</td>
+                  </tr>
+                </table>
+              </div>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+  </nb-card-body>
+</nb-card>

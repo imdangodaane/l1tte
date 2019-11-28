@@ -1,0 +1,41 @@
+<nb-card>
+  <nb-card-header>
+    <span>Bài viết mới</span>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-card>
+      <nb-card-header>
+        <div class="editor__header">
+          <input [(ngModel)]="post.title" type="text" nbInput fullWidth placeholder="Tiêu đề bài đăng">
+          <input [(ngModel)]="post.banner_url" type="text" nbInput fullWidth placeholder="URL banner (nếu có) VD: https://photos.animetvn.tv/upload/film_big/q95DBfp.png">
+          <div class="badges-picking">
+            <span>Tags:</span>
+            <nb-checkbox [(checked)]="post.badges.news" status="primary"><span class="text-primary">News</span></nb-checkbox>
+            <nb-checkbox [(checked)]="post.badges.event" status="success"><span class="text-success">Event</span></nb-checkbox>
+            <nb-checkbox [(checked)]="post.badges.hot" status="danger"><span class="text-danger">Hot</span></nb-checkbox>
+            <nb-checkbox [(checked)]="post.badges.guide" status="warning"><span class="text-warning">Guide</span></nb-checkbox>
+            <nb-checkbox [(checked)]="post.badges.etc" status="info"><span class="text-info">Etc</span></nb-checkbox>
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="editor__body">
+          <ck-editor class="my-ckeditor" [(ngModel)]="innerValue" #myCkeditor></ck-editor>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <div class="editor__footer">
+          <button type="button" nbButton shape="round" (click)="onSubmitNewPost()">Đăng bài</button>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-body>
+    <span>Xem trước</span>
+    <hr>
+    <div [innerHTML]="this.innerValue | safeHtml"></div>
+  </nb-card-body>
+</nb-card>

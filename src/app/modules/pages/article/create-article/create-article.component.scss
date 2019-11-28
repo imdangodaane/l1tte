@@ -1,0 +1,50 @@
+.editor__header {
+  display: flex;
+  flex-flow: column nowrap;
+
+  input {
+    margin-bottom: 0.5rem;
+  }
+
+  .badges-picking {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    margin-top: 0.5rem;
+    
+    nb-checkbox {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-end;
+      margin-left: 1rem;
+
+      span {
+        padding-top: 0.25rem;
+      }
+    }
+  }
+}
+
+.editor__body {
+
+  .my-ckeditor {
+    height: 40vh;
+  }
+}
+
+.editor__footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    padding-top: 0.75rem !important;
+    font-family: 'iCielAvantGardeGothic' !important;
+    width: 50vw;
+  }
+}
+
+.ck-editor__editable_inline, .cke_contents {
+  min-height: 480px;
+}

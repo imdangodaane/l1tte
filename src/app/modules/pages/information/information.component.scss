@@ -1,0 +1,53 @@
+.info-component {
+  width: 70%;
+  
+  .server-info__basic-information {
+  
+    table {
+      width: 40vw;
+      border-collapse: separate;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+  
+    th, td {
+      width: 20vw;
+      line-height: 1.5rem;
+      padding: 0.5rem 1rem;
+      background: #eef;
+      transition: font-weight 0.2s ease-in-out, border-radius 0.2s ease-in-out, padding-bottom 0.15s ease-in-out;
+    }
+  
+    th:hover, td:hover {
+      font-weight: 600;
+      border-radius: 1rem;
+      padding-bottom: 0.25rem;
+      cursor: pointer;
+    }
+  }
+  
+  .server-info__rates {
+  
+    table {
+      width: 40vw;
+      border-collapse: separate;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+  
+    th, td {
+      width: 20vw;
+      line-height: 1.5rem;
+      padding: 0.5rem 1rem;
+      background: #eef;
+      transition: font-weight 0.2s ease-in-out, border-radius 0.2s ease-in-out, padding-bottom 0.15s ease-in-out;
+    }
+  
+    th:hover, td:hover {
+      font-weight: 600;
+      border-radius: 1rem;
+      padding-bottom: 0.25rem;
+      cursor: pointer;
+    }
+  }
+}

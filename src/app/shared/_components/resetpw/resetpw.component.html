@@ -1,0 +1,17 @@
+<form>
+  <nb-card class="resetPW__component">
+    <nb-card-header>
+      <div class="resetPW__header">
+        <span>Quên mật khẩu</span>
+        <img src="assets/svg/close.svg" alt="" (click)="closeModal()">
+      </div>
+    </nb-card-header>
+    <nb-card-body class="resetPW__body">
+      <label for="emailResetPW">Nhập địa chỉ email để có thể reset password:</label>
+      <input type="email" nbInput [(ngModel)]="emailResetPW" name="emailResetPW" shape="round" status="primary" fullWidth placeholder="Email">
+    </nb-card-body>
+    <nb-card-footer class="resetPW__footer">
+      <button type="submit" nbButton status="primary" shape="round" fullWidth (click)="onSubmitResetPW()">Gửi</button>
+    </nb-card-footer>
+  </nb-card>
+</form>

@@ -1,0 +1,21 @@
+<nb-card class="download-component">
+  <nb-card-header>
+    <span>Tải game</span>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-accordion multi [nbSpinner]="loaderService.loading" nbSpinnerStatus="primary">
+      <nb-accordion-item>
+        <nb-accordion-item-header>Tải bản FULL</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <a href="{{linkGameFull}}">Link</a>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+      <nb-accordion-item>
+        <nb-accordion-item-header>Tải bản Patcher</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <a href="{{linkGamePatcher}}">Link</a>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-card-body>
+</nb-card>

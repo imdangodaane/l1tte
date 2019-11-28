@@ -1,0 +1,25 @@
+<div class="post">
+  <div class="post__left-side">
+    <a href="{{post.link}}"><img src="assets/images/bwetx.webp" alt=""></a>
+  </div>
+  <div class="post__right-side">
+    <div class="post__header">
+      <span class="badge badge-success">News</span>
+      <span class="badge badge-primary">Event</span>
+      <span class="badge badge-warning">Guide</span>
+      <span class="badge badge-danger">Hot</span>
+      <span class="badge badge-info">Etc</span>
+    </div>
+    <div class="post__body">
+      <span class="post__title"><a href="{{post.link}}">{{post.title}}</a></span>
+      <span class="post__description">{{ (post.text.length>149) ? (post.text | slice:0:149) + '...' : (post.text) }}</span>
+    </div>
+    <div class="post__footer">
+      <a href="{{post.link}}">Xem thêm...</a>
+      <div class="post__author-time">
+        <span><a href="https://facebook.com/qui.innovator">nquizx</a></span>
+        <span>5/11/2019</span>
+      </div>
+    </div>
+  </div>
+</div>

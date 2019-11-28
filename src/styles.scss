@@ -6,3 +6,65 @@
   @include nb-theme-global();
 };
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  font-family: 'iCielAvantGardeGothic-Book';
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-Bold';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-BoldIta';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-BoldIta.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-Book';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-Book.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-Book.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-BookItalic';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-BookItalic.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-ExLtItX';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-ExLtItX.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-ExtLt';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-ExtLt.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-Medium';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-SemBd';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-SemBd.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-SmBdIt';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-SmBdIt.ttf');
+}
+
+@font-face {
+  font-family: 'iCielAvantGardeGothic-MedIta';
+  src: url('assets/fonts/ice/iCielAvantGardeGothic-MedIta.ttf');
+}

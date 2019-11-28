@@ -1,0 +1,28 @@
+.homepage__notice {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  width: 100%;
+  background-color: #fff;
+  padding: 0 1rem;
+
+  .img-close {
+    cursor: pointer;
+    width: 1.5rem;
+    height: auto;
+  }
+}
+
+.homepage__component {
+  max-width: 100vw;
+
+  .homepage__images {
+    
+    img {
+      width: 100%;
+    }
+  }
+
+}

@@ -1,0 +1,45 @@
+.register-card {
+  width: 60%;
+
+  .lregister {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    align-items: stretch;
+
+    label {
+      font-weight: 600;
+    }
+  
+    input {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .policy-agreement {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    span {
+      margin: 0 1rem;
+    }
+  }
+
+  .register-card__footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    button {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .register-card {
+    width: 100%;
+  }
+}

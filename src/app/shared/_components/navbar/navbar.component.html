@@ -1,0 +1,25 @@
+<div class="lnavbar">
+  <div class="lnavbar__logo">
+    <span (click)="navigateTo('home')">
+      <!-- <img src="assets/images/favicon2.webp" alt=""> -->
+      <img src="assets/images/brand2.webp" alt="">
+    </span>
+  </div>
+  <div class="lnavbar__header">
+    <span *ngFor="let header of headers" (click)="navigateTo(header.url)">{{ header.name }}</span>
+    <nb-user size="medium"
+             name="nquizx"
+             title="Administrator"
+             color="#cccccc"
+             *ngIf="user"
+             [nbContextMenu]="userMenu"
+             nbContextMenuTrigger="hover">
+    </nb-user>
+    <span *ngIf="!user" (click)="openModal(loginModal)">Đăng nhập</span>
+  </div>
+</div>
+
+<ng-template #loginModal let-modal>
+  <app-login [openingModal]="openingModal"
+             (loginState)="loginHandler($event)"></app-login>
+</ng-template>

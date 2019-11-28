@@ -1,0 +1,116 @@
+.lnavbar {
+  display: flex;
+  flex-flow: row nowrap;
+
+  .lnavbar__logo {
+    display: flex;
+    align-items: center;
+    padding-top: 0.5rem;
+
+    img {
+      height: 2rem;
+    }
+
+    span {
+      font-size: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+      padding-right: 2rem;
+      padding-left: 1rem;
+    }
+
+    span:hover {
+      transform: scale(1.2);
+      color: blue;
+    }
+  }
+  .lnavbar__header {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+    span {
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+      text-transform: uppercase;
+      padding-top: 0.5rem;
+    }
+
+    span:hover {
+      transform: scale(1.35);
+      color: blue;
+    }
+  }
+}
+
+.login__component {
+
+  .login__header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  
+    img {
+      width: 1.5rem;
+      height: auto;
+      cursor: pointer;
+    }
+  }
+  
+  .login__body {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    align-items: stretch;
+  
+    input {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .login__footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  
+    .login__more {
+      display: flex;
+      flex-flow: row nowrap;
+  
+      a {
+        margin-right: 0.5rem;
+      }
+    }
+  
+    button {
+      margin-left: 0.5rem;
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.resetPW__component {
+
+  .resetPW__header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  
+    img {
+      width: 1.5rem;
+      height: auto;
+      cursor: pointer;
+    }
+  }
+  .resetPW__body {
+
+  }
+  .resetPW__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

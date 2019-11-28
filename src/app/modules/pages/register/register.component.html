@@ -1,0 +1,58 @@
+<nb-card class="register-card">
+  <nb-card-header>
+    <span>
+      Đăng ký tài khoản
+    </span>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="lregister">
+      <label for="userid">Tên tài khoản:</label>
+      <input type="text" name="userid" nbInput shape="round" fullWidth 
+             [(ngModel)]="registerPayload.userid"
+             status="{{registerPayload.userid.length >= 4 && registerPayload.userid.length < 26 ? 'success' : 'danger'}}"
+             placeholder="Username"
+             >
+
+      <label for="userpass">Mật khẩu:</label>
+      <input type="password" name="userpass" nbInput shape="round" fullWidth 
+             [(ngModel)]="registerPayload.user_pass"
+             status="{{registerPayload.user_pass.length >= 4 && registerPayload.userid.length < 26 ? 'success' : 'danger'}}"
+             placeholder="Password"
+             >
+
+      <label for="re-userpass">Xác nhận mật khẩu:</label>
+      <input type="password" name="re-userpass" nbInput shape="round" fullWidth 
+             [(ngModel)]="reUserpass"
+             status="{{registerPayload.user_pass === reUserpass ? 'success' : 'danger'}}"
+             placeholder="Confirm Password"
+             >
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" nbInput shape="round" fullWidth 
+             [(ngModel)]="registerPayload.email"
+             status="{{registerPayload.email.length >= 4 && registerPayload.userid.length < 29 ? 'success' : 'danger'}}"
+             placeholder="Email"
+             >
+
+      <label for="sex">Giới tính:</label>
+      <nb-select shape="round" fullWidth style="margin-bottom: 1rem;" placeholder="Gender" [(selected)]="registerPayload.sex">
+        <nb-option *ngFor="let sex of sexSelection" [value]="sex.value">{{sex.name}}</nb-option>
+      </nb-select>
+
+      <label for="birthdate">Ngày sinh:</label>
+      <input type="text" name="birthdate" nbInput shape="round" fullWidth
+             [(ngModel)]="registerPayload.birthdate"
+             [nbDatepicker]="birthdatepicker"
+             placeholder="Birthdate"
+             >
+      <nb-datepicker #birthdatepicker format="DD/MM/YYYY"></nb-datepicker>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="register-card__footer">
+    <div class="policy-agreement">
+      <nb-toggle [(checked)]="policyAgreement"></nb-toggle>
+      <span>Tôi đồng ý với điều khoản cung cấp dịch vụ</span>
+    </div>
+    <button nbButton shape="round" [disabled]="!policyAgreement" (click)="onSubmit()">Đăng ký</button>
+  </nb-card-footer>
+</nb-card>
