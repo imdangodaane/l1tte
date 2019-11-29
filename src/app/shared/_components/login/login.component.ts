@@ -1,23 +1,20 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LoaderService } from '@shared/_services/loader.service';
-import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPayload } from 'src/app/_models/login-payload';
 import { AccountService } from '@shared/_services/account.service';
 import { CookieService } from 'ngx-cookie-service';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [
-    CookieService,
-  ]
+  providers: [CookieService]
 })
 export class LoginComponent implements OnInit {
   debug = true;
-  @Input() openingModal: NgbModalRef;
-  @Output() loginState = new EventEmitter();
+  @Output() eventState = new EventEmitter();
 
   loginPayload: LoginPayload = {
     userid: '',
@@ -26,42 +23,42 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public loaderService: LoaderService,
-    public modalService: NgbModal,
     private accountService: AccountService,
-    private cookieService: CookieService,
-    private jwtService: JwtHelperService,
-  ) {}
+  ) { }
 
-  ngOnInit() {
-  }
-
-  openModal(content) {
-    this.closeModal();
-    this.openingModal = this.modalService.open(content);
-  }
-
-  closeModal() {
-    try {
-      this.openingModal.close();
-    } catch (e) { this.modalService.dismissAll() }
-  }
+  ngOnInit() { }
 
   onLogin() {
     this.loaderService.showLoader('login');
-    this.accountService.login(this.loginPayload).subscribe(
-      res => {
+    this.accountService.login(this.loginPayload)
+    .pipe(
+      map(res => {
         this.loaderService.hideLoader();
-        const decodedPayload = this.jwtService.decodeToken(res.data);
-        this.cookieService.set('token', res.data, new Date(decodedPayload.exp));
-        this.accountService.onLoginSuccess();
-        this.loginState.emit('logged-in');
-        this.closeModal();
-      },
-      err => {
+        this.accountService.loginSuccessHandler(res.data);
+        this.eventHandler('login-success');
+      }),
+      catchError(err => {
         this.loaderService.hideLoader();
-        if (this.debug === true) console.error(err);
-      }
-    );
+        if (this.debug === true) {
+          console.error(err);
+        }
+        return of([]);
+      })
+    )
+    .subscribe();
   }
 
+  eventHandler(type: string) {
+    switch (type) {
+      case 'open-reset-password':
+        this.eventState.emit('open-reset-password');
+        break;
+      case 'login-success':
+        this.eventState.emit('login-success');
+        break;
+      default:
+        this.eventState.emit('close-modal');
+        break;
+    }
+  }
 }

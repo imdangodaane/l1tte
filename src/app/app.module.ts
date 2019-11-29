@@ -13,7 +13,8 @@ import {
   NbDatepickerModule,
   NbToastrModule,
   NbMenuModule,
-  NbCardModule
+  NbCardModule,
+  NbSidebarModule
 } from '@nebular/theme';
 import { NbMomentDateModule } from '@nebular/moment';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -50,6 +51,7 @@ import { CookieService } from 'ngx-cookie-service';
         },
       }
     }),
+    NbSidebarModule.forRoot(),
   ],
   providers: [
     CookieService

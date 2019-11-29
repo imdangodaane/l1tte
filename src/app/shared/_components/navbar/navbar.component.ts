@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderService } from '../../_services/loader.service';
 import { NbMenuService } from '@nebular/theme';
-import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '@shared/_services/account.service';
 
 @Component({
@@ -11,8 +10,9 @@ import { AccountService } from '@shared/_services/account.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, AfterViewInit {
   debug = true;
+  @ViewChild('resetPasswordModal', {static: false}) resetPasswordModal: ElementRef;
   user: string;
   openingModal: NgbModalRef;
   headers = [
@@ -23,24 +23,23 @@ export class NavbarComponent implements OnInit {
     { name: 'Tin tức', url: 'news'},
     { name: 'Diễn đàn', url: 'forum'},
     { name: 'Wiki', url: 'wiki'},
-  ]
+  ];
   userModel = {
     name: 'nquizx',
     title: 'Administrator'
-  }
+  };
   userMenu = [
     { title: 'Trang cá nhân', data: {id: 'personal-page'} },
     { title: 'Thông tin tài khoản', data: {id: 'account-info'} },
     { title: 'Đăng bài viết', data: {id: 'new-post'} },
     { title: 'Đăng xuất', data: {id: 'logout'} },
-  ]
+  ];
 
   constructor(
     private route: Router,
     private modalService: NgbModal,
     public loaderService: LoaderService,
     private nbMenuService: NbMenuService,
-    private cookieService: CookieService,
     private accountService: AccountService,
   ) {}
 
@@ -50,13 +49,16 @@ export class NavbarComponent implements OnInit {
     this.getCurrentUser();
   }
 
+  ngAfterViewInit() {
+  }
+
   getCurrentUser() {
     this.accountService.getCurrentUser().subscribe(
       res => {
         this.user = res;
       },
       err => {
-        if (this.debug === true) console.error(err);
+        if (this.debug === true) { console.error(err); }
       }
     );
   }
@@ -73,16 +75,18 @@ export class NavbarComponent implements OnInit {
   closeModal() {
     try {
       this.openingModal.close();
-    } catch (e) {}
+    } catch (e) {
+      this.modalService.dismissAll();
+    }
   }
 
   onLogout() {
-    this.user = this.accountService.logout();
+    this.accountService.logout();
   }
 
   userMenuContextListener() {
     this.nbMenuService.onItemClick().subscribe(event => {
-      switch(event.item.data.id) {
+      switch (event.item.data.id) {
         case 'logout':
           this.onLogout();
           break;
@@ -94,9 +98,22 @@ export class NavbarComponent implements OnInit {
   }
 
   loginHandler(event: any) {
-    console.log("TCL: loginHandler -> event", event)
-    if (event === 'logged-in') {
-      this.user = this.cookieService.get('token');
+    if (event === 'login-success') {
+      this.closeModal();
+    }
+  }
+
+  eventHandler(event: string) {
+    switch (event) {
+      case 'close-modal':
+        this.closeModal();
+        break;
+      case 'login-success':
+        this.closeModal();
+        break;
+      case 'open-reset-password':
+        this.closeModal();
+        this.openingModal = this.modalService.open(this.resetPasswordModal);
     }
   }
 

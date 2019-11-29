@@ -1,7 +1,6 @@
 <div class="lnavbar">
   <div class="lnavbar__logo">
     <span (click)="navigateTo('home')">
-      <!-- <img src="assets/images/favicon2.webp" alt=""> -->
       <img src="assets/images/brand2.webp" alt="">
     </span>
   </div>
@@ -20,6 +19,9 @@
 </div>
 
 <ng-template #loginModal let-modal>
-  <app-login [openingModal]="openingModal"
-             (loginState)="loginHandler($event)"></app-login>
+  <app-login (eventState)="eventHandler($event)"></app-login>
+</ng-template>
+
+<ng-template #resetPasswordModal let-modal>
+  <app-resetpw (eventState)="eventHandler($event)"></app-resetpw>
 </ng-template>

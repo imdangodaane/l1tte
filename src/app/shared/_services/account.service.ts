@@ -5,14 +5,15 @@ import { API } from 'src/app/_configs/api.constant';
 import { LoginPayload } from 'src/app/_models/login-payload';
 import { ResetPWPayload } from 'src/app/_models/resetpw-payload';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    Accept: 'application/json',
   })
-}
+};
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class AccountService {
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
+    private jwtService: JwtHelperService
   ) {}
 
   register(payload: RegisterAccount) {
@@ -41,19 +43,22 @@ export class AccountService {
   }
 
   checkLogin() {
+    this.currentUser.next(this.cookieService.get('token'));
     return this.cookieService.get('token');
   }
 
   logout() {
     this.cookieService.delete('token');
-    return null;
+    this.currentUser.next(null);
   }
 
   getCurrentUser() {
     return this.currentUser.asObservable();
   }
 
-  onLoginSuccess() {
+  loginSuccessHandler(token: string) {
+    const decodedPayload = this.jwtService.decodeToken(token);
+    this.cookieService.set('token', token, new Date(decodedPayload.exp_iso));
     this.currentUser.next(this.cookieService.get('token'));
   }
 }

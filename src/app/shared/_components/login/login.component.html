@@ -3,7 +3,7 @@
     <nb-card-header>
       <div class="login__header">
         <span>Đăng nhập</span>
-        <img src="assets/svg/close.svg" alt="" (click)="closeModal()">
+        <img src="assets/svg/close.svg" alt="" (click)="eventHandler('close-modal')">
       </div>
     </nb-card-header>
     <nb-card-body class="login__body">
@@ -14,14 +14,10 @@
     </nb-card-body>
     <nb-card-footer class="login__footer">
       <div class="login__more">
-        <a [routerLink]="['register']" (click)="closeModal()">Đăng ký tài khoản</a>
-        <a [routerLink]="" (click)="openModal(resetPasswordModal)">Quên mật khẩu</a>
+        <a [routerLink]="['register']" (click)="eventHandler('close-modal')">Đăng ký tài khoản</a>
+        <a [routerLink]="" (click)="eventHandler('open-reset-password')">Quên mật khẩu</a>
       </div>
       <button type="submit" nbButton status="primary" shape="semi-round" (click)="onLogin()">Đăng nhập</button>
     </nb-card-footer>
   </nb-card>
 </form>
-
-<ng-template #resetPasswordModal let-modal>
-  <app-resetpw [openingModal]="openingModal"></app-resetpw>
-</ng-template>

@@ -12,7 +12,7 @@ import { WikiComponent } from './wiki/wiki.component';
 import { RegisterComponent } from './register/register.component';
 import { ForumComponent } from './forum/forum.component';
 import { FormsModule } from '@angular/forms';
-import { 
+import {
   NbInputModule,
   NbCardModule,
   NbDatepickerModule,
@@ -24,6 +24,8 @@ import {
   NbButtonModule,
   NbAccordionModule,
   NbListModule,
+  NbSidebarModule,
+  NbLayoutModule,
 } from '@nebular/theme';
 import {
   NbMomentDateModule
@@ -73,6 +75,23 @@ import { CreateArticleComponent } from './article/create-article/create-article.
     NbMomentDateModule,
     CKEditorModule,
     PipesModule,
-  ]
+    NbSidebarModule,
+    NbLayoutModule
+  ],
+  exports: [
+    HomepageComponent,
+    DownloadComponent,
+    InformationComponent,
+    SupportComponent,
+    NewsComponent,
+    WikiComponent,
+    RegisterComponent,
+    ForumComponent,
+    PersonalPageComponent,
+    AccountInfoComponent,
+    NewPostComponent,
+    ArticleDetailComponent,
+    CreateArticleComponent
+  ],
 })
 export class PagesModule { }
