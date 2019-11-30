@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { SharedComponentsModule } from './shared/_components/shared-components.m
 import { CKEditorModule } from 'ngx-ckeditor';
 import { JwtModule } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
+import { JwtInterceptor } from './_helper/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CookieService } from 'ngx-cookie-service';
     NbSidebarModule.forRoot(),
   ],
   providers: [
-    CookieService
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [
     AppComponent

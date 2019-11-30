@@ -7,14 +7,14 @@
   <div class="lnavbar__header">
     <span *ngFor="let header of headers" (click)="navigateTo(header.url)">{{ header.name }}</span>
     <nb-user size="medium"
-             name="nquizx"
-             title="Administrator"
-             color="#cccccc"
-             *ngIf="user"
+             name="{{ accountInfo.userid }}"
+             title="{{ accountInfo.title }}"
+             color="#def"
+             *ngIf="token"
              [nbContextMenu]="userMenu"
              nbContextMenuTrigger="hover">
     </nb-user>
-    <span *ngIf="!user" (click)="openModal(loginModal)">Đăng nhập</span>
+    <span *ngIf="!token" (click)="openModal(loginModal)">Đăng nhập</span>
   </div>
 </div>
 

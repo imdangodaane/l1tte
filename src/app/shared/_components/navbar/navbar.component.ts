@@ -4,6 +4,8 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderService } from '../../_services/loader.service';
 import { NbMenuService } from '@nebular/theme';
 import { AccountService } from '@shared/_services/account.service';
+import { catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +15,8 @@ import { AccountService } from '@shared/_services/account.service';
 export class NavbarComponent implements OnInit, AfterViewInit {
   debug = true;
   @ViewChild('resetPasswordModal', {static: false}) resetPasswordModal: ElementRef;
-  user: string;
+  token: string;
+  accountInfo: any;
   openingModal: NgbModalRef;
   headers = [
     { name: 'Đăng ký', url: 'register'},
@@ -55,7 +58,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   getCurrentUser() {
     this.accountService.getCurrentUser().subscribe(
       res => {
-        this.user = res;
+        this.token = res;
       },
       err => {
         if (this.debug === true) { console.error(err); }
@@ -97,12 +100,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  loginHandler(event: any) {
-    if (event === 'login-success') {
-      this.closeModal();
-    }
-  }
-
   eventHandler(event: string) {
     switch (event) {
       case 'close-modal':
@@ -110,10 +107,35 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         break;
       case 'login-success':
         this.closeModal();
+        this.getAccountInformation();
         break;
       case 'open-reset-password':
         this.closeModal();
         this.openingModal = this.modalService.open(this.resetPasswordModal);
+    }
+  }
+
+  getAccountInformation() {
+    this.accountService.getAccountInformation().pipe(
+      map(res => {
+        this.accountInfo = res.data;
+        this.processAccountInformation();
+      }),
+      catchError(err => {
+        if (this.debug === true) { console.error(err); }
+        return of([]);
+      })
+    ).subscribe();
+  }
+
+  processAccountInformation() {
+    const groupReference = {
+      0: 'Player',
+      15: 'Administrator',
+      14: 'Moderator'
+    };
+    if (this.accountInfo) {
+      this.accountInfo.title = groupReference[this.accountInfo.group_id];
     }
   }
 

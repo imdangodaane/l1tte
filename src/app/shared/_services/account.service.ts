@@ -20,6 +20,7 @@ const httpOptions = {
 })
 export class AccountService {
   currentUser: BehaviorSubject<string> = new BehaviorSubject('');
+  requireToken: boolean;
 
   constructor(
     private http: HttpClient,
@@ -60,5 +61,11 @@ export class AccountService {
     const decodedPayload = this.jwtService.decodeToken(token);
     this.cookieService.set('token', token, new Date(decodedPayload.exp_iso));
     this.currentUser.next(this.cookieService.get('token'));
+  }
+
+  getAccountInformation() {
+    this.requireToken = true;
+    const url = API.API_ACCOUNT.API_ACCOUNT_INFORMATION;
+    return this.http.get<any>(url);
   }
 }

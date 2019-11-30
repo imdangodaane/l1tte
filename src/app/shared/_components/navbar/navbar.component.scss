@@ -43,6 +43,7 @@
       transform: scale(1.35);
       color: blue;
     }
+
   }
 }
 
@@ -58,6 +59,7 @@
       height: auto;
       cursor: pointer;
     }
+  
   }
   
   .login__body {
@@ -90,7 +92,9 @@
       margin-left: 0.5rem;
       flex: 1 1 auto;
     }
+
   }
+
 }
 
 .resetPW__component {
@@ -105,12 +109,16 @@
       height: auto;
       cursor: pointer;
     }
+
   }
+  
   .resetPW__body {
 
   }
+
   .resetPW__footer {
     display: flex;
     justify-content: flex-end;
   }
+  
 }

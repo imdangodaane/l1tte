@@ -4,7 +4,8 @@ import { LoginPayload } from 'src/app/_models/login-payload';
 import { AccountService } from '@shared/_services/account.service';
 import { CookieService } from 'ngx-cookie-service';
 import { map, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, from } from 'rxjs';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public loaderService: LoaderService,
     private accountService: AccountService,
+    private toastService: NbToastrService
   ) { }
 
   ngOnInit() { }
@@ -39,6 +41,11 @@ export class LoginComponent implements OnInit {
       }),
       catchError(err => {
         this.loaderService.hideLoader();
+        if (err.status === 404) {
+          this.toastService.danger('', 'Tài khoản không tồn tại');
+        } else {
+          this.toastService.danger('', 'Đăng nhập thất bại');
+        }
         if (this.debug === true) {
           console.error(err);
         }

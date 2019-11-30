@@ -12,18 +12,20 @@ export class LoaderService {
   loginLoading = false;
   loadRef = {
     loading: false,
-    login: false
-  }
+    login: false,
+    navbar: false
+  };
   loadRef$ = {
     loading: new BehaviorSubject<boolean>(false),
-    login: new BehaviorSubject<boolean>(false)
+    login: new BehaviorSubject<boolean>(false),
+    navbar: new BehaviorSubject<boolean>(false),
   };
 
   constructor() {}
 
   initLoader() {
-    for (let key in this.loadRef$) {
-      this.loadRef$[key].asObservable().subscribe(res => this.loadRef[key] = res);
+    for (const key in this.loadRef$) {
+      if (key) { this.loadRef$[key].asObservable().subscribe(res => this.loadRef[key] = res); }
     }
   }
 
@@ -31,7 +33,7 @@ export class LoaderService {
     if (id) {
       this.loadRef$[id].next(true);
     } else {
-      this.loadRef$['loading'].next(true);
+      this.loadRef$.loading.next(true);
     }
   }
 
@@ -39,8 +41,8 @@ export class LoaderService {
     if (id) {
       this.loadRef$[id].next(false);
     } else {
-      for (let i in this.loadRef$) {
-        this.loadRef$[i].next(false);
+      for (const i in this.loadRef$) {
+        if (i) { this.loadRef$[i].next(false); }
       }
     }
   }
