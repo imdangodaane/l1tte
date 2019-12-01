@@ -20,6 +20,7 @@ const httpOptions = {
 })
 export class AccountService {
   currentUser: BehaviorSubject<string> = new BehaviorSubject('');
+  currentUser$ = this.currentUser.asObservable();
   requireToken: boolean;
 
   constructor(
@@ -48,6 +49,10 @@ export class AccountService {
     return this.cookieService.get('token');
   }
 
+  public get isLogin() {
+    return Boolean(this.currentUserValue);
+  }
+
   logout() {
     this.cookieService.delete('token');
     this.currentUser.next(null);
@@ -55,6 +60,10 @@ export class AccountService {
 
   getCurrentUser() {
     return this.currentUser.asObservable();
+  }
+
+  public get currentUserValue() {
+    return this.currentUser.value;
   }
 
   loginSuccessHandler(token: string) {

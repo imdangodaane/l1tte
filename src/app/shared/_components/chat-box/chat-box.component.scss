@@ -1,0 +1,9 @@
+.chat-box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+
+  .chat-box__box {
+    width: 60vw;
+  }
+}

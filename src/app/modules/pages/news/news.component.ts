@@ -9,7 +9,14 @@ import { DataService } from 'src/app/shared/_services/data.service';
 export class NewsComponent implements OnInit {
   debug = true;
   posts = [];
-
+  userRankingData = {
+    name: 'Bảng xếp hạng (cấp độ)',
+    data: [
+      { name: 'nquizx' },
+      { name: 'nqui1' },
+      { name: 'nqui2' },
+    ]
+  };
 
   constructor(
     private dataService: DataService,

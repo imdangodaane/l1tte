@@ -1,0 +1,18 @@
+.personal__banner {
+  display: flex;
+  flex-flow: row nowrap;
+
+  .personal__left-banner {
+    flex: 1 1 64%;
+    max-width: 64%;
+    height: calc((100vw - 7rem) * 36/100);
+    max-height: calc((100vw - 7rem) * 36/100);
+  }
+
+  .personal__right-banner {
+    flex: 1 1 36%;
+    max-width: 36%;
+    height: calc((100vw - 7rem) * 36/100);
+    max-height: calc((100vw - 7rem) * 36/100);
+  }
+}

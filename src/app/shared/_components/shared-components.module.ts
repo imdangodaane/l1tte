@@ -10,12 +10,16 @@ import {
   NbUserModule,
   NbContextMenuModule,
   NbSpinnerModule,
+  NbChatModule,
+  NbAccordionModule,
 } from '@nebular/theme';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ResetpwComponent } from './resetpw/resetpw.component';
+import { RankingBoardComponent } from './ranking-board/ranking-board.component';
+import { ChatBoxComponent } from './chat-box/chat-box.component';
 
 
 @NgModule({
@@ -24,6 +28,8 @@ import { ResetpwComponent } from './resetpw/resetpw.component';
     PostComponent,
     LoginComponent,
     ResetpwComponent,
+    RankingBoardComponent,
+    ChatBoxComponent,
   ],
   imports: [
     CommonModule,
@@ -36,13 +42,18 @@ import { ResetpwComponent } from './resetpw/resetpw.component';
     NbUserModule,
     NbContextMenuModule,
     NbSpinnerModule,
-    RouterModule
+    RouterModule,
+    NbListModule,
+    NbChatModule,
+    NbAccordionModule
   ],
   exports: [
     NavbarComponent,
     PostComponent,
     LoginComponent,
     ResetpwComponent,
+    RankingBoardComponent,
+    ChatBoxComponent
   ]
 })
 export class SharedComponentsModule { }

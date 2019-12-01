@@ -1,0 +1,28 @@
+<nb-accordion *ngIf="accountService.isLogin">
+  <nb-accordion-item>
+    <nb-accordion-item-header>Chat Room</nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <div class="chat-box">
+        <nb-chat class="chat-box__box" title="latte-chat-room" size="large">
+          <nb-chat-message *ngFor="let msg of messages"
+                           [type]="msg.type"
+                           [message]="msg.text"
+                           [reply]="msg.reply"
+                           [sender]="msg.user.name"
+                           [date]="msg.date"
+                           [files]="msg.files"
+                           [quote]="msg.quote"
+                           [latitude]="msg.latitude"
+                           [longitude]="msg.longitude"
+                           [avatar]="msg.user.avatar">
+          </nb-chat-message>
+          <!-- <nb-chat-form (send)="sendMessage($event, 'Nguyen Qui', '', true)" [showButton]="false" [dropFiles]="false">
+          </nb-chat-form> -->
+          <hr>
+          <nb-chat-form (send)="sendMessage($event, 'Qui Nguyen', '', false)" [showButton]="true" [dropFiles]="false">
+          </nb-chat-form>
+        </nb-chat>
+      </div>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>

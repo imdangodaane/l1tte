@@ -15,7 +15,6 @@ import { of } from 'rxjs';
 export class NavbarComponent implements OnInit, AfterViewInit {
   debug = true;
   @ViewChild('resetPasswordModal', {static: false}) resetPasswordModal: ElementRef;
-  token: string;
   accountInfo: any;
   openingModal: NgbModalRef;
   headers = [
@@ -49,22 +48,26 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.loaderService.initLoader();
     this.userMenuContextListener();
-    this.getCurrentUser();
+    this.accountService.checkLogin();
+    // this.getCurrentUser();
+    if (this.accountService.isLogin) {
+      this.getAccountInformation();
+    }
   }
 
   ngAfterViewInit() {
   }
 
-  getCurrentUser() {
-    this.accountService.getCurrentUser().subscribe(
-      res => {
-        this.token = res;
-      },
-      err => {
-        if (this.debug === true) { console.error(err); }
-      }
-    );
-  }
+  // getCurrentUser() {
+  //   this.accountService.getCurrentUser().subscribe(
+  //     res => {
+  //       this.token = res;
+  //     },
+  //     err => {
+  //       if (this.debug === true) { console.error(err); }
+  //     }
+  //   );
+  // }
 
   navigateTo(url) {
     this.route.navigate([url]);
@@ -107,6 +110,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         break;
       case 'login-success':
         this.closeModal();
+        console.log("TCL: NavbarComponent -> eventHandler -> this.accountService.currentUserValue", this.accountService.currentUserValue)
         this.getAccountInformation();
         break;
       case 'open-reset-password':

@@ -37,6 +37,7 @@ import { CKEditorModule } from 'ngx-ckeditor';
 import { PipesModule } from '@shared/_pipes/pipes.module';
 import { ArticleDetailComponent } from './article/article-detail/article-detail.component';
 import { CreateArticleComponent } from './article/create-article/create-article.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { CreateArticleComponent } from './article/create-article/create-article.
     CKEditorModule,
     PipesModule,
     NbSidebarModule,
-    NbLayoutModule
+    NbLayoutModule,
+    NgbCarouselModule
   ],
   exports: [
     HomepageComponent,

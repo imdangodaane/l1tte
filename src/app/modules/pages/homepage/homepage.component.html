@@ -1,9 +1,27 @@
-<div *ngIf="showHomepageNotice" class="homepage__notice">
-  <span>Chào mừng đến với Latte Ragnarok Online</span>
-  <img class="img-close" src="assets/svg/close.svg" alt="" (click)="closeNotice()">
-</div>
-<div class="homepage__component">
-  <div class="homepage__images">
-    <img src="assets/images/homepage.webp" alt="">
+<div class="homepage">
+  <div *ngIf="showHomepageNotice" class="homepage__notice">
+    <span>Chào mừng đến với Latte Ragnarok Online</span>
+    <img class="img-close" src="assets/svg/close.svg" alt="" (click)="closeNotice()">
+  </div>
+  <div class="homepage__chatbox">
+    <app-chat-box></app-chat-box>
+  </div>
+  <!-- <div class="homepage__carousel">
+    <ngb-carousel #carousel interval="3000" [pauseOnHover]="true">
+      <ng-template ngbSlide *ngFor="let img of images; index as i">
+        <div class="carousel-caption">
+          <span class="carousel__caption">My slide {{i + 1}} title</span>
+          <p class="carousel__text">My slide {{i + 1}}</p>
+        </div>
+        <div class="picsum-img-wrapper">
+          <img [src]="img" alt="My image {{i + 1}} description">
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div> -->
+  <div class="homepage__component">
+    <div class="homepage__images">
+      <img src="assets/images/homepage.webp" alt="">
+    </div>
   </div>
 </div>

@@ -14,7 +14,8 @@ import {
   NbToastrModule,
   NbMenuModule,
   NbCardModule,
-  NbSidebarModule
+  NbSidebarModule,
+  NbChatModule
 } from '@nebular/theme';
 import { NbMomentDateModule } from '@nebular/moment';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -53,6 +54,7 @@ import { JwtInterceptor } from './_helper/jwt.interceptor';
       }
     }),
     NbSidebarModule.forRoot(),
+    NbChatModule.forRoot(),
   ],
   providers: [
     CookieService,

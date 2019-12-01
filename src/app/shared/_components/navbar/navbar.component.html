@@ -6,15 +6,15 @@
   </div>
   <div class="lnavbar__header">
     <span *ngFor="let header of headers" (click)="navigateTo(header.url)">{{ header.name }}</span>
-    <nb-user size="medium"
-             name="{{ accountInfo.userid }}"
-             title="{{ accountInfo.title }}"
+    <nb-user *ngIf="accountService.isLogin"
+             size="medium"
+             name="{{ accountInfo ? accountInfo.userid : '' }}"
+             title="{{ accountInfo ?  accountInfo.title : '' }}"
              color="#def"
-             *ngIf="token"
              [nbContextMenu]="userMenu"
              nbContextMenuTrigger="hover">
     </nb-user>
-    <span *ngIf="!token" (click)="openModal(loginModal)">Đăng nhập</span>
+    <span *ngIf="!accountService.isLogin" (click)="openModal(loginModal)">Đăng nhập</span>
   </div>
 </div>
 
