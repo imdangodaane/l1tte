@@ -46,10 +46,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.loaderService.initLoader();
+    this.loaderService.init();
     this.userMenuContextListener();
-    this.accountService.checkLogin();
-    // this.getCurrentUser();
     if (this.accountService.isLogin) {
       this.getAccountInformation();
     }
@@ -57,17 +55,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
   }
-
-  // getCurrentUser() {
-  //   this.accountService.getCurrentUser().subscribe(
-  //     res => {
-  //       this.token = res;
-  //     },
-  //     err => {
-  //       if (this.debug === true) { console.error(err); }
-  //     }
-  //   );
-  // }
 
   navigateTo(url) {
     this.route.navigate([url]);
@@ -110,7 +97,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         break;
       case 'login-success':
         this.closeModal();
-        console.log("TCL: NavbarComponent -> eventHandler -> this.accountService.currentUserValue", this.accountService.currentUserValue)
         this.getAccountInformation();
         break;
       case 'open-reset-password':
@@ -127,6 +113,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       }),
       catchError(err => {
         if (this.debug === true) { console.error(err); }
+        this.accountService.logout();
         return of([]);
       })
     ).subscribe();

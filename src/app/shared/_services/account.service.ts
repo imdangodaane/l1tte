@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RegisterAccount } from 'src/app/_models/register-account';
 import { API } from 'src/app/_configs/api.constant';
@@ -19,8 +19,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AccountService {
-  currentUser: BehaviorSubject<string> = new BehaviorSubject('');
-  currentUser$ = this.currentUser.asObservable();
+  private currentUser: BehaviorSubject<string> = new BehaviorSubject('');
+  public loginEvent = new EventEmitter();
   requireToken: boolean;
 
   constructor(
@@ -44,13 +44,9 @@ export class AccountService {
     return this.http.post<any>(url, payload, httpOptions);
   }
 
-  checkLogin() {
-    this.currentUser.next(this.cookieService.get('token'));
-    return this.cookieService.get('token');
-  }
-
   public get isLogin() {
-    return Boolean(this.currentUserValue);
+    this.currentUser.next(this.cookieService.get('token'));
+    return Boolean(this.currentUser.value);
   }
 
   logout() {
@@ -58,18 +54,11 @@ export class AccountService {
     this.currentUser.next(null);
   }
 
-  getCurrentUser() {
-    return this.currentUser.asObservable();
-  }
-
-  public get currentUserValue() {
-    return this.currentUser.value;
-  }
-
   loginSuccessHandler(token: string) {
     const decodedPayload = this.jwtService.decodeToken(token);
     this.cookieService.set('token', token, new Date(decodedPayload.exp_iso));
     this.currentUser.next(this.cookieService.get('token'));
+    this.loginEvent.emit('login-success');
   }
 
   getAccountInformation() {

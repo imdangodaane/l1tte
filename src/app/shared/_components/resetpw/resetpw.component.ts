@@ -20,11 +20,9 @@ export class ResetpwComponent implements OnInit {
   }
 
   onSubmitResetPW() {
-    console.log('TCL: onSubmitResetPW -> this.emailResetPW', this.emailResetPW);
     const payload: ResetPWPayload = { email: this.emailResetPW };
     this.accountService.resetPW(payload).subscribe(
       res => {
-        console.log('TCL: onSubmitResetPW -> res', res);
         this.eventHandler('close-modal');
       },
       err => {

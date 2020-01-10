@@ -1,9 +1,27 @@
+p {
+  padding: 0.25rem 0.5rem;
+}
+
+
 .chat-box {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
 
+
   .chat-box__box {
     width: 60vw;
+
+    .chat-box__chat-message {
+      margin-bottom: 0.25rem;
+    }
+
+    .sender {
+      margin-bottom: 0;
+    }
+
+    .text {
+      padding: 0.25rem 0.5rem;
+    }
   }
 }

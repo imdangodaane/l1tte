@@ -23,7 +23,7 @@ export class LoaderService {
 
   constructor() {}
 
-  initLoader() {
+  init() {
     for (const key in this.loadRef$) {
       if (key) { this.loadRef$[key].asObservable().subscribe(res => this.loadRef[key] = res); }
     }

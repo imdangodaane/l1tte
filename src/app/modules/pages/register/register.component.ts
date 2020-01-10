@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
             }, 1500);
           },
           err => {
-            if (this.debug === true) { console.error(err) }
+            if (this.debug === true) { console.error(err); }
             if (err.error.status === 'existed') {
               this.toastrService.danger('Tên tài khoản hoặc email đã tồn tại', 'Đăng ký thất bại');
             } else {
