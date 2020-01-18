@@ -1,15 +1,17 @@
-export class AccountInformation {
-  accountId: number;
-  userId: string;
+
+export interface AccountInformation {
+  title?: string;
+  account_id: number;
+  userid: string;
   sex: string;
   email: string;
-  groupId: number;
+  group_id: number;
   state: number;
-  loginCount: number;
-  lastLogin: string;
-  lastIp: string;
+  logincount: number;
+  lastlogin: string;
+  last_ip: string;
   birthdate: string;
-  characterSlots: number;
-  vipTime: number;
-  oldGroup: number;
+  character_slots: number;
+  vip_time: number;
+  old_group: number;
 }

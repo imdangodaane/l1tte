@@ -6,9 +6,9 @@ import { Article } from 'src/app/_models/article';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    Accept: 'application/json',
   })
-}
+};
 
 @Injectable({
   providedIn: 'root'

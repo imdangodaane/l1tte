@@ -7,6 +7,7 @@ import { ResetPWPayload } from 'src/app/_models/resetpw-payload';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AccountInformation } from 'src/app/_models/account-information';
 
 const httpOptions = {
   headers: new HttpHeaders({

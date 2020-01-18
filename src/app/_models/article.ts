@@ -1,12 +1,18 @@
-export class Article {
+export interface Article {
   title: string;
-  content: any;
-  badges: any;
+  content: string;
+  badges: {
+    news: boolean,
+    event: boolean,
+    hot: boolean,
+    guide: boolean,
+    etc: boolean
+  } | string;
   slug: string;
   author: string;
   created_at: string;
   updated_at: string;
-  is_archived: Boolean;
+  is_archived: boolean;
   banner_url: string;
-  on_carousel: Boolean;
+  on_carousel: boolean;
 }

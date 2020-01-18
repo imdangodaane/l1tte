@@ -12,6 +12,7 @@ import { AccountInfoComponent } from './account-info/account-info.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { PersonalPageComponent } from './personal-page/personal-page.component';
 import { AuthGuard } from 'src/app/_helper/auth.guard';
+import { CreateArticleComponent } from './article/create-article/create-article.component';
 
 
 const routes: Routes = [
@@ -57,9 +58,9 @@ const routes: Routes = [
     component: AccountInfoComponent
   },
   {
-    path: 'new-post',
+    path: 'create-article',
     canActivate: [AuthGuard],
-    component: NewPostComponent
+    component: CreateArticleComponent
   },
   {
     path: 'personal-page',

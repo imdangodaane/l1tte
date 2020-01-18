@@ -6,6 +6,7 @@ import { NbMenuService } from '@nebular/theme';
 import { AccountService } from '@shared/_services/account.service';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { AccountInformation } from 'src/app/_models/account-information';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,7 @@ import { of } from 'rxjs';
 export class NavbarComponent implements OnInit, AfterViewInit {
   debug = true;
   @ViewChild('resetPasswordModal', {static: false}) resetPasswordModal: ElementRef;
-  accountInfo: any;
+  accountInfo: AccountInformation;
   openingModal: NgbModalRef;
   headers = [
     { name: 'Đăng ký', url: 'register'},
@@ -33,7 +34,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   userMenu = [
     { title: 'Trang cá nhân', data: {id: 'personal-page'} },
     { title: 'Thông tin tài khoản', data: {id: 'account-info'} },
-    { title: 'Đăng bài viết', data: {id: 'new-post'} },
+    { title: 'Đăng bài viết', data: {id: 'create-article'} },
     { title: 'Đăng xuất', data: {id: 'logout'} },
   ];
 
